@@ -4,6 +4,7 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, e
 from tensorflow import keras
 from keras.models import Sequential
 from keras.layers import LSTM, Dense
+import matplotlib.pyplot as plt
 import pandas as pd
 import math
 
@@ -51,3 +52,10 @@ print("Mean Absolute Error:{:.2f}".format(mae))
 
 explained_variance = explained_variance_score(y_test, y_pred)
 print("Explained Variance Score:{:.2f}".format( explained_variance))
+
+plt.scatter(y_test, y_pred, alpha=0.5)
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--')
+plt.title('LSTM: Actual vs Predicted SoC')
+plt.xlabel('Actual SoC')
+plt.ylabel('Predicted SoC')
+plt.show()

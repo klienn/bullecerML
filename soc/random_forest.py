@@ -1,7 +1,10 @@
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, explained_variance_score
+
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 import math
 
 SEED = 23
@@ -32,3 +35,10 @@ print("Mean Absolute Error: {:.2f}".format(mae))
 
 explained_variance = explained_variance_score(y_test, y_pred)
 print("Explained Variance Score: {:.2f}".format(explained_variance))
+
+plt.scatter(y_test, y_pred)
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--')
+plt.xlabel('Actual SoC')
+plt.ylabel('Predicted SoC')
+plt.title('Random Forest: Actual vs Predicted SoC')
+plt.show()

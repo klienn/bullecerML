@@ -1,7 +1,9 @@
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score, explained_variance_score
+import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 import math
 
 SEED = 23
@@ -32,3 +34,10 @@ print("Mean Absolute Error:{:.2f}".format(mae))
 
 explained_variance = explained_variance_score(y_test, y_pred)
 print("Explained Variance Score:{:.2f}".format( explained_variance))
+
+plt.scatter(y_test, y_pred)
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--')
+plt.xlabel('Actual SoC')
+plt.ylabel('Predicted SoC')
+plt.title('Gradient Boosting: Actual vs Predicted SoC')
+plt.show()
